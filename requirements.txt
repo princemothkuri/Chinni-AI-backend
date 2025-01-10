@@ -3,6 +3,7 @@ uvicorn
 motor
 python-dateutil
 pydantic
+pydantic[email]
 langchain
 langgraph
 langchain-groq
