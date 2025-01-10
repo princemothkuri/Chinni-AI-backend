@@ -86,7 +86,7 @@ def chinniAiAgent(user_message: str, user_id: ObjectId):
         api_key = get_api_key_from_database(user_id=user_id)
 
         if api_key['api_key'] == "":
-            return "It looks like you haven't set your OpenAI API key yet.\nPlease follow these steps to get started:\n1. **Get your API key**\nVisit the [OpenAI website](https://platform.openai.com/account/api-keys) to generate your API key.\n\n2. **Set the API key**\nGo to the [settings page](http://localhost:3000/settings) of ChinniAI Assistant and enter your API key.\n\nOnce you've set your API key, you're ready to use ChinniAI Assistant!"
+            return "It looks like you haven't set your OpenAI API key yet.\nPlease follow these steps to get started:\n1. **Get your API key**\nVisit the [OpenAI website](https://platform.openai.com/account/api-keys) to generate your API key.\n\n2. **Set the API key**\nGo to the [settings page](https://chinni-ai.vercel.app/settings) of ChinniAI Assistant and enter your API key.\n\nOnce you've set your API key, you're ready to use ChinniAI Assistant!"
 
         # Create agent executor
         agent_executor = create_react_agent(
@@ -168,10 +168,10 @@ def chinniAiAgent(user_message: str, user_id: ObjectId):
             return (
                 "It seems you've exceeded your current quota for API usage.\n"
                 "Please check your plan and billing details on the [OpenAI Billing Dashboard](https://platform.openai.com/account/billing/overview).\n\n"
-                "To update your API key or settings, visit the [ChinniAI Settings Page](http://localhost:3000/settings)."
+                "To update your API key or settings, visit the [ChinniAI Settings Page](https://chinni-ai.vercel.app/settings)."
             )
         if "api_key" in str(e):
-            return "It looks like you haven't set your OpenAI API key yet.\nPlease follow these steps to get started:\n1. **Get your API key**\nVisit the [OpenAI website](https://platform.openai.com/account/api-keys) to generate your API key.\n\n2. **Set the API key**\nGo to the [settings page](http://localhost:3000/settings) of ChinniAI Assistant and enter your API key.\n\nOnce you've set your API key, you're ready to use ChinniAI Assistant!"
+            return "It looks like you haven't set your OpenAI API key yet.\nPlease follow these steps to get started:\n1. **Get your API key**\nVisit the [OpenAI website](https://platform.openai.com/account/api-keys) to generate your API key.\n\n2. **Set the API key**\nGo to the [settings page](https://chinni-ai.vercel.app/settings) of ChinniAI Assistant and enter your API key.\n\nOnce you've set your API key, you're ready to use ChinniAI Assistant!"
         
         return "Something went wrong please try again later..."
 
