@@ -18,3 +18,5 @@ llamaapi
 python-dotenv
 gunicorn
 PyJWT
+pytz
+masonite==0.2.9.4
