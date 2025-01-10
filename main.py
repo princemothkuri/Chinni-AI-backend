@@ -63,6 +63,11 @@ def create_app():
     # Setup WebSocket
     setup_websocket(app)
     
+    # Default route to check if the backend is running
+    @app.get("/")
+    async def read_root():
+        return {"message": "ChinniAI backend is running"}
+
     return app
 
 if __name__ == '__main__':
