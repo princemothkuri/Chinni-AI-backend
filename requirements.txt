@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+motor
+python-dateutil
+pydantic
+langchain
+langgraph
+langchain-groq
+langchain-openai
+langchain-community
+tavily-python
+python-jose[cryptography]  # for JWT handling
+passlib[bcrypt]  # for password hashing
+clerk
+setuptools
+llamaapi
+python-dotenv

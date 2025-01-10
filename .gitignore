@@ -1,0 +1,53 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+*.env
+
+# FastAPI logs
+*.log
+
+# Static files (if generated dynamically)
+staticfiles/
+mediafiles/
+
+# Database files
+*.sqlite3
+*.db
+
+# Testing and coverage tools
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Cache
+*.cache
+.cache/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.bak
+*.tmp
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
