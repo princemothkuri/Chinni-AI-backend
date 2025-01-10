@@ -70,7 +70,7 @@ class TaskManagerTool(BaseTool):
                 
             return {"status": "success", "inserted_id": str(result.inserted_id)}
         except Exception as e:
-            print("Error while adding: ", str(e))
+            # print("Error while adding: ", str(e))
             return {"status": "error", "Error while adding": str(e)}
 
     def update_task(self, user_id, query):
@@ -102,7 +102,6 @@ class TaskManagerTool(BaseTool):
 
             # Apply the update query to the collection
             result = tasks_collection.update_one(filter_query, update_query)
-            print("Result of Update: ", result.raw_result)
 
             # Convert ObjectIds back to strings for response
             filter_query = self._convert_object_ids_to_str(filter_query)
@@ -113,7 +112,7 @@ class TaskManagerTool(BaseTool):
             else:
                 return {"status": "no_update", "message": "No documents were updated"}
         except Exception as e:
-            print("Error while updating: ", str(e))
+            # print("Error while updating: ", str(e))
             return {"status": "error", "message": str(e), "query": query}
 
 
@@ -187,8 +186,6 @@ class TaskManagerTool(BaseTool):
             else:
                 result = tasks_collection.delete_one(filter_query)
 
-            print("Result of Remove: ", result.raw_result)
-
             # Convert ObjectIds back to strings
             if "_id" in filter_query:
                 filter_query["_id"] = str(filter_query["_id"])
@@ -201,7 +198,7 @@ class TaskManagerTool(BaseTool):
 
             return {"status": "success", "message": "Task removed successfully"}
         except Exception as e:
-            print("Error while removing: ", str(e))
+            # print("Error while removing: ", str(e))
             return {"status": "error", "Error while removing": str(e)}
 
     def fetch_tasks(self, user_id, query):
@@ -219,38 +216,8 @@ class TaskManagerTool(BaseTool):
                 filter_query["_id"] = str(filter_query["_id"])
 
             tasks = self._convert_object_ids_to_str(tasks)
-
-            # for task in tasks:
-            #     if "_id" in task:
-            #         task["_id"] = str(task["_id"])
-            #     if "user_id" in task:
-            #         task["user_id"] = str(task["user_id"])
-            #     if "subtasks" in task:
-            #         for subtask in task["subtasks"]:
-            #             if "_id" in subtask:
-            #                 subtask["_id"] = str(subtask["_id"])
             
             return {"status": "success", "tasks": tasks}
         except Exception as e:
-            print("Error while fetching: ", str(e))
+            # print("Error while fetching: ", str(e))
             return {"status": "error", "Error while fetching": str(e)}
-
-
-# tool = TaskManagerTool()
-# print(tool._run(user_id = '674d9f1b77ae989876f0cd9b', action = 'update', query = {'filter': {'_id': '677237cc63e7089892d746bc', 'user_id': '674d9f1b77ae989876f0cd9b'}, 'update': {'$pull': {'subtasks': {'_id': '67781444596f11878cbeb9c4'}}, '$set': {'last_updated': '2025-01-03T15:52:57.269610+00:00'}}}
-# ))
-# print(tool._run(user_id = '674d9f1b77ae989876f0cd9b', action = 'update', query = {'filter': {'_id': '677237cc63e7089892d746bc', 'user_id': '674d9f1b77ae989876f0cd9b'}, 'update': {'$push': {'subtasks': {'title': 'Additional Subtask', 'description': 'This is an additional subtask for testing purposes.', 'due_date': '2024-12-31T08:00:00+05:30', 'priority': 'normal', 'status': 'pending'}}, '$set': {'last_updated': '2025-01-03T15:51:45.473443+00:00'}}}
-# ))
-
-# print(tool._run(user_id = '674d9f1b77ae989876f0cd9b', action = 'remove', query = {
-#         '_id': '677237cc63e7089892d746bc', 
-#         'title': {'$regex': '^Demo Task$', '$options': 'i'}
-    
-# }
-# ))
-
-# print(tool._run(user_id = '674d9f1b77ae989876f0cd9b', action = 'fetch', query = {
-# }
-# ))
-
-# print(tool._run(user_id = '674d9f1b77ae989876f0cd9b', action = 'add', query = {'title': 'Demo Task', 'description': 'This is a demo task to test functionality.', 'due_date': '2024-12-26T08:00:00+05:30', 'status': 'pending', 'priority': 'high'}))

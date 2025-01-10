@@ -39,10 +39,8 @@ class CurrentDateTimeFetcher(BaseTool):
             current_time = datetime.now(india_timezone)
 
             if format_type.lower() == "iso":
-                print("CurrentDateTimeFetcher >>> ISO: ", current_time.isoformat())
                 return current_time.isoformat()
             elif format_type.lower() == "human":
-                print("CurrentDateTimeFetcher >>> human: ", current_time.strftime("%d %B %Y, %I:%M %p"))
                 return current_time.strftime("%d %B %Y, %I:%M %p")
             else:
                 return "Invalid format_type. Use 'ISO' or 'human'."

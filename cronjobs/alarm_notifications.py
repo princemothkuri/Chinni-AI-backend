@@ -34,8 +34,6 @@ async def check_and_notify_alarms():
 
         for alarm in due_alarms:
             user_id = alarm["user_id"]
-            # print(alarm)
-            # print("current alarm time --> ",alarm["alarm_time"], "\n\n")
             
             # Get user's socket_id
             user = users_collection.find_one({"_id": user_id})
@@ -85,43 +83,23 @@ async def check_and_notify_alarms():
                 notification["data"]["next_alarm_time"] = next_alarm_time
 
             try:
-                print(notification)
                 # Send notification through WebSocket
                 await websocket.send_text(json.dumps(notification))
 
                 # Update alarm based on repeat pattern
                 if alarm.get("repeat_pattern") == "daily":
-                    # Parse the string to datetime, add a day, then format back to string
-                    # current_alarm_time = datetime.fromisoformat(alarm["alarm_time"])
-                    # next_alarm = (current_alarm_time + timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S%z')
-                    # # Insert colon in timezone offset if needed
-                    # if ':' not in next_alarm[-5:]:
-                    #     next_alarm = next_alarm[:-2] + ':' + next_alarm[-2:]
                     
                     alarms_collection.update_one(
                         {"_id": alarm["_id"]},
                         {"$set": {"alarm_time": next_alarm_time}}
                     )
                 elif alarm.get("repeat_pattern") == "weekly":
-                    # Parse the string to datetime, add 7 days, then format back to string
-                    # current_alarm_time = datetime.strptime(alarm["alarm_time"], '%Y-%m-%dT%H:%M:%S%z')
-                    # next_alarm = (current_alarm_time + timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%S%z')
-                    # # Insert colon in timezone offset if needed
-                    # if ':' not in next_alarm[-5:]:
-                    #     next_alarm = next_alarm[:-2] + ':' + next_alarm[-2:]
                     
                     alarms_collection.update_one(
                         {"_id": alarm["_id"]},
                         {"$set": {"alarm_time": next_alarm_time}}
                     )
                 elif alarm.get("repeat_pattern") == "monthly":
-                    # Parse the string to datetime
-                    # current_alarm_time = datetime.strptime(alarm["alarm_time"], '%Y-%m-%dT%H:%M:%S%z')
-                    # # Add one month (using relative delta for proper month handling)
-                    # next_alarm = (current_alarm_time + relativedelta(months=1)).strftime('%Y-%m-%dT%H:%M:%S%z')
-                    # # Insert colon in timezone offset if needed
-                    # if ':' not in next_alarm[-5:]:
-                    #     next_alarm = next_alarm[:-2] + ':' + next_alarm[-2:]
                     
                     alarms_collection.update_one(
                         {"_id": alarm["_id"]},

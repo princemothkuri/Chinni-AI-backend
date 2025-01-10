@@ -118,7 +118,7 @@ def chinniAiAgent(user_message: str, user_id: ObjectId):
                                 if tool_call['name'] == "AlarmManager":
                                     # Convert user_id to string
                                     tool_call['args']["user_id"] = user_id_str
-                                    print("AlarmManager tool called --> ", tool_call['args'])
+                                    # print("AlarmManager tool called --> ", tool_call['args'])
 
                                     # Convert ObjectId fields to string for serialization
                                     if "filter" in tool_call['args']["query"]:
@@ -129,7 +129,7 @@ def chinniAiAgent(user_message: str, user_id: ObjectId):
                                 elif tool_call['name'] == "TaskManager":
                                     # Convert user_id to string
                                     tool_call['args']["user_id"] = user_id_str
-                                    print("TaskManager tool called --> ", tool_call['args'])
+                                    # print("TaskManager tool called --> ", tool_call['args'])
 
                                     # Convert ObjectId fields to string for serialization
                                     if "_id" in tool_call['args']["query"]:
@@ -141,10 +141,6 @@ def chinniAiAgent(user_message: str, user_id: ObjectId):
                                         if "subtasks._id" in tool_call['args']["query"]["filter"]:
                                             tool_call['args']["query"]["filter"]["subtasks._id"] = str(tool_call['args']["query"]["filter"]["subtasks._id"])
                                         tool_call['args']["query"]["filter"]["user_id"] = user_id_str
-
-                                else:
-                                    print(f"Executing tool: {tool_call['name']}")
-                                    print(f"Tool arguments: {tool_call['args']}")
 
                         # Handle the actual response content
                         elif message.content:

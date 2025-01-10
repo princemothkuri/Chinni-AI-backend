@@ -45,7 +45,7 @@ def create_app():
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[FRONTEND_URL],
+        allow_origins=["https://chinni-ai.vercel.app"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -62,6 +62,8 @@ def create_app():
 
     # Setup WebSocket
     setup_websocket(app)
+
+    print("-------- WebSocket Started ----------")
     
     # Default route to check if the backend is running
     @app.get("/")

@@ -222,7 +222,6 @@ class TaskController:
 
     @staticmethod
     async def delete_subtask(user_id, task_id, subtask_id):
-        print(user_id,task_id,subtask_id)
         try:
             result = tasks_collection.update_one(
                 {

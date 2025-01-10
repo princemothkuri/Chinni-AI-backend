@@ -14,7 +14,7 @@ def setup_websocket(app: FastAPI):
 
         if not user_id:
             await websocket.close(code=1008)  # Policy Violation
-            print("Connection rejected: Invalid auth token")
+            # print("Connection rejected: Invalid auth token")
             return
 
         await websocket.accept()
@@ -30,12 +30,12 @@ def setup_websocket(app: FastAPI):
         # Register WebSocket connection
         register_websocket(socket_id, websocket)
         
-        print(f"User {user_id} connected with socket {socket_id}")
+        # print(f"User {user_id} connected with socket {socket_id}")
 
         try:
             while True:
                 data = await websocket.receive_text()
-                print(f"Received message from {user_id}")
+                # print(f"Received message from {user_id}")
                 
                 try:
                     # Convert user_id to ObjectId for MongoDB
@@ -66,4 +66,4 @@ def setup_websocket(app: FastAPI):
             )
             # Remove WebSocket connection
             remove_websocket(socket_id)
-            print(f"User {user_id} disconnected")
+            # print(f"User {user_id} disconnected")
