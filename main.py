@@ -40,24 +40,31 @@ async def lifespan(app: FastAPI):
         except asyncio.CancelledError:
             print("Task cron job cancelled")
 
-app = FastAPI(title="ChinniAI Backend", lifespan=lifespan)
+def create_app():
+    app = FastAPI(title="ChinniAI Backend", lifespan=lifespan)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[FRONTEND_URL],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[FRONTEND_URL],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
-# Include all API routes
-app.include_router(auth.router, prefix="/auth", tags=["Auth"])
-app.include_router(user.router, prefix="/user", tags=["User"])
-app.include_router(ai.router, prefix="/ai", tags=["AI"])
-app.include_router(settings.router, prefix="/settings", tags=["Settings"])
-app.include_router(health.router, prefix="/health", tags=["Health"])
-app.include_router(alarm.router, prefix="/api")
-app.include_router(tasks.router, prefix="/api")
+    # Include all API routes
+    app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+    app.include_router(user.router, prefix="/user", tags=["User"])
+    app.include_router(ai.router, prefix="/ai", tags=["AI"])
+    app.include_router(settings.router, prefix="/settings", tags=["Settings"])
+    app.include_router(health.router, prefix="/health", tags=["Health"])
+    app.include_router(alarm.router, prefix="/api")
+    app.include_router(tasks.router, prefix="/api")
 
-# Setup WebSocket
-setup_websocket(app)
+    # Setup WebSocket
+    setup_websocket(app)
+    
+    return app
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(debug=False, host='0.0.0.0', port=8000)
