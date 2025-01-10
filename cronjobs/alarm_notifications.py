@@ -147,8 +147,8 @@ async def start_alarm_cron():
     tick_count = 0
     
     while True:
-        tick_count += 1
-        if tick_count % 60 == 0:  # Log every minute
-            logger.info(f"✅ Alarm cron still running... (tick: {tick_count})")
+        # tick_count += 1
+        # if tick_count % 60 == 0:  # Log every minute
+        #     logger.info(f"✅ Alarm cron still running... (tick: {tick_count})")
         await check_and_notify_alarms()
         await asyncio.sleep(1)  # Check every second

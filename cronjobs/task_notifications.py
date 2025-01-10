@@ -148,8 +148,8 @@ async def start_task_cron():
     tick_count = 0
     
     while True:
-        tick_count += 1
-        if tick_count % 300 == 0:  # Log every 5 minutes
-            logger.info(f"✅ Task cron still running... (tick: {tick_count})")
+        # tick_count += 1
+        # if tick_count % 300 == 0:  # Log every 5 minutes
+        #     logger.info(f"✅ Task cron still running... (tick: {tick_count})")
         await check_and_notify_tasks()
         await asyncio.sleep(300)  # Check every 5 minutes, 300 
