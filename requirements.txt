@@ -16,3 +16,4 @@ setuptools
 llamaapi
 python-dotenv
 gunicorn
+PyJWT
