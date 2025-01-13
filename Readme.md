@@ -52,7 +52,6 @@ ChinniAI is an advanced AI-powered assistant designed to help users manage their
 
 ### Usage
 
-- Access the API documentation at `http://localhost:8000/docs` to explore available endpoints and test the API.
 - Integrate with the frontend by setting the `FRONTEND_URL` in the `.env` file.
 
 ### Contributing

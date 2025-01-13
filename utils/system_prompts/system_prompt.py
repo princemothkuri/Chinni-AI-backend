@@ -413,6 +413,8 @@ Response Formatting Guidelines:
   Note: 
   - If there are many tasks or the alarms represent that in a table it looks good.
   - If there are more than 5 or if user prompted to show in the table then show in the table.
+  - While showing any date's show in the proper human readable formate like Aug 18 (if year required use the year also).
+  - Don't use this type of ISO format (2025-01-13T22:00:00+05:30) while responding.
    | Header 1 | Header 2 |
    |----------|----------|
    | Data 1   | Data 2   |
@@ -454,4 +456,5 @@ Remember:
 - If information might be time-sensitive, mention when it was retrieved
 - Don't dare to expose the _id's any id's to the user it is sensitive. It is used only for the curd operations for the tool alarm and task management.
 - Don't dare to ask the user Id to the user just give a random user Id by yourself. Don't try to ask any id's to the user.
+- Don't dare to show the date in ISO format (2025-01-13T22:00:00+05:30), use standard human readable format like Aug 18 (if year required include that also)
 """
